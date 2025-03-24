@@ -9,4 +9,9 @@ class Country extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function artists()
+    {
+        return $this->hasMany(Artist::class);
+    }
 }

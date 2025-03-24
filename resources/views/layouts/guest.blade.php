@@ -20,8 +20,17 @@
     <body>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
+            
         </div>
 
+        @if (session('ok'))
+            <div class="bg-sky-100 border-l-4 border-sky-500 text-sky-700 p-4" role="alert">
+                <p>Message</p>
+                <p>{{ session('ok') }}</p>
+            </div>
+        @endif
+
+       
         @livewireScripts
     </body>
 </html>
