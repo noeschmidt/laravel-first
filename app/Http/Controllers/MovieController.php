@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\MovieRequest;
 use App\Http\Middleware\Ajax;
 use App\Models\Movie;
+use App\Models\Artist;
+use App\Models\Country;
 
 class MovieController extends Controller
 {
@@ -21,9 +23,9 @@ class MovieController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Movie $movie)
     {
-        return view('movies.create');
+        return view('movies.create', ['movie' => $movie, 'directors' => Artist::all(), 'countries' => Country::all()]);
     }
 
     /**
@@ -50,7 +52,7 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        return view('movies.edit', ['movie' => $movie]);
+        return view('movies.edit', ['movie' => $movie, 'directors' => Artist::all(), 'countries' => Country::all()]);
     }
 
     /**
@@ -61,14 +63,16 @@ class MovieController extends Controller
         $movie->update($request->validated());
 
         return redirect()->route('movie.index')
-            ->with('ok', __('Artist has been updated'));
+            ->with('ok', __('Movie has been updated'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+
+        return response()->json();
     }
 }

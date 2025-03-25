@@ -8,7 +8,9 @@ class Movie extends Model
 {
     protected $fillable = [
         'title',
-        'year'
+        'year',
+        'country_id',
+        'director_id'
     ];
 
     public function country()
