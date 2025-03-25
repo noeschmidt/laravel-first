@@ -75,4 +75,13 @@ class MovieController extends Controller
 
         return response()->json();
     }
+
+    public function attach(Request $request, Movie $movie)
+    {
+        // attache l'artiste au film
+        $movie->actors()->attach($request->get('actor_id'), ['role_name' => $request->get('role')]);
+
+        return redirect()->route('movie.show', $movie)
+            ->with('ok', __('Actor has been attached to movie'));
+    }
 }

@@ -19,6 +19,13 @@ Route::middleware([
     })->name('dashboard');
 });
 
+
+Route::prefix('movie')->group(function () {
+    Route::get('{movie}/actors', [MovieController::class, 'actors'])->name('movie.actors');
+    Route::post('{movie}/attach', [MovieController::class, 'attach'])->name('movie.attach');
+    Route::delete('{movie}/detach/{artist}', [MovieController::class, 'detach'])->name('movie.detach');
+});
+
 Route::resource('artist', ArtistController::class);
 
 Route::resource('movie', MovieController::class);

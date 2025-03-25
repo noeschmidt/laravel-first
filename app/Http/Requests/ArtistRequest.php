@@ -24,6 +24,7 @@ class ArtistRequest extends FormRequest
         return [
             'name' => 'required|string|max:20',
             'firstname' => 'required|string|max:15',
+            'birthdate' => 'required|integer|min:1800|max:2023',
             'country_id' => 'required|exists:countries,id'
         ];
     }
