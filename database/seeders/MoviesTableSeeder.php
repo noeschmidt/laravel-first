@@ -38,6 +38,14 @@ class MoviesTableSeeder extends Seeder
                 'country_id' => 4,
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'title' => 'Dumb and Dumber',
+                'year' => 1994,
+                'director_id' => 3,
+                'country_id' => 5,
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

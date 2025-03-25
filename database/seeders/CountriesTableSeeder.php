@@ -34,6 +34,11 @@ class CountriesTableSeeder extends Seeder
                 'name' => 'Germany',
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'name' => 'Canada',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

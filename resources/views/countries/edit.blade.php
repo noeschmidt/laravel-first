@@ -22,9 +22,12 @@
                         </div>
                     </div>
 
-                    <div>
+                    <div class="flex items-center justify-between">
+                        <a href="{{ route('country.index') }}" class="text-sm text-indigo-600 hover:text-indigo-500">
+                            Cancel
+                        </a>
                         <button type="submit"
-                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Update Country
                         </button>
                     </div>
