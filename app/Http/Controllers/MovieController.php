@@ -42,9 +42,12 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Movie $movie)
     {
-        //
+        $movie->load('actors');
+        $artists = Artist::all();
+
+        return view('movies.show', ['movie' => $movie, 'artists' => $artists]);
     }
 
     /**

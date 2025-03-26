@@ -42,44 +42,46 @@
                             @foreach ($movies as $movie)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">{{ $movie->title }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-500">{{ $movie->year }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-500">
-                                            {{ $movie->director?->name ?? 'No director found' }}
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-500">
-                                            {{ $movie->country?->name ?? 'No Country Associated' }}
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <div class="flex justify-end space-x-2">
-                                            <a href="{{ route('movie.edit', $movie->id) }}"
-                                                class="text-indigo-600 hover:text-indigo-900 px-3 py-1 border border-indigo-600 rounded hover:bg-indigo-50">
-                                                Edit
-                                            </a>
-                                            <a href="{{ route('movie.destroy', $movie->id) }}"
-                                                class="text-red-600 hover:text-red-900 px-3 py-1 border border-red-600 rounded hover:bg-red-50 delete">
-                                                Delete
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                        <a href="{{ route('movie.show', $movie->id) }}"
+                                            class="text-indigo-600 hover:text-indigo-900">{{ $movie->title }}
                 </div>
-            </div>
-
-            <div class="mt-4">
-                {{ $movies->links() }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-500">{{ $movie->year }}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-500">
+                        {{ $movie->director?->name ?? 'No director found' }}
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-500">
+                        {{ $movie->country?->name ?? 'No Country Associated' }}
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <div class="flex justify-end space-x-2">
+                        <a href="{{ route('movie.edit', $movie->id) }}"
+                            class="text-indigo-600 hover:text-indigo-900 px-3 py-1 border border-indigo-600 rounded hover:bg-indigo-50">
+                            Edit
+                        </a>
+                        <a href="{{ route('movie.destroy', $movie->id) }}"
+                            class="text-red-600 hover:text-red-900 px-3 py-1 border border-red-600 rounded hover:bg-red-50 delete">
+                            Delete
+                        </a>
+                    </div>
+                </td>
+                </tr>
+                @endforeach
+                </tbody>
+                </table>
             </div>
         </div>
+
+        <div class="mt-4">
+            {{ $movies->links() }}
+        </div>
+    </div>
     </div>
 </x-guest-layout>
 

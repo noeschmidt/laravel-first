@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 20);
             $table->string('firstname', 15);
             $table->year('birthdate')->nullable();
+            $table->string('role')->nullable();
             $table->timestamps();
         });
     }

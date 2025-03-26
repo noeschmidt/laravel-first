@@ -15,7 +15,8 @@ class Artist extends Model
         'name',
         'firstname',
         'birthdate',
-        'country_id'
+        'country_id',
+        'role'
     ];
 
     public function country()
