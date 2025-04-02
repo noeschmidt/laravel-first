@@ -88,6 +88,21 @@ class MovieController extends Controller
     {
         $movie->update($request->validated());
 
+        if ($request->hasFile('poster')) {
+            // Delete old poster if exists
+            if ($movie->poster_path) {
+                Storage::disk('public')->delete($movie->poster_path);
+            }
+
+            $poster = $request->file('poster');
+            $filename = 'poster_' . $movie->id . '.' . $poster->guessClientExtension();
+            Image::read($poster)->cover(180, 240)
+                ->save(storage_path('/app/public/posters/' . $filename));
+
+            $movie->poster_path = 'posters/' . $filename;
+            $movie->save();
+        }
+
         return redirect()->route('movie.index')
             ->with('ok', __('Movie has been updated'));
     }
@@ -99,7 +114,8 @@ class MovieController extends Controller
     {
         $movie->delete();
 
-        return response()->json();
+        return redirect()->route('movie.index')
+            ->with('ok', __('Movie has been deleted'));
     }
 
     // A améliorer pour la prod utiliser MovieRequest

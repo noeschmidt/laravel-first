@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ArtistRequest;
+use Intervention\Image\Laravel\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Middleware\Ajax;
 use App\Models\Artist;
 use App\Models\Country;
@@ -30,9 +32,21 @@ class ArtistController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ArtistRequest $request)
+    public function store(ArtistRequest $request, Artist $artist)
     {
-        Artist::create($request->validated());
+        $validated = $request->validated();
+
+        $artist = Artist::create($validated);
+
+        if ($request->hasFile('acteur-photo')) {
+            $photoActeur = $request->file('acteur-photo');
+            $filename = 'acteur_' . $artist->firstname . '-' . $artist->name . $photoActeur . guessClientExtension();
+            Image::read($photoActeur)->cover(180, 240)
+                ->save(storage_path('/app/public/actors/' . $filename));
+
+            $artist->actor_path = 'actors/' . $filename;
+            $artist->save();
+        }
 
         return redirect()->route('artist.index')
             ->with('ok', __('Artist has been saved'));
@@ -41,9 +55,19 @@ class ArtistController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Artist $artist)
     {
-        //
+        // Load movies that this artist has directed
+        $directedMovies = $artist->hasDirected;
+
+        // Load movies where this artist has played in
+        $actedInMovies = $artist->hasPlayed;
+
+        return view('artists.show', [
+            'artist' => $artist,
+            'directedMovies' => $directedMovies,
+            'actedInMovies' => $actedInMovies
+        ]);
     }
 
     /**

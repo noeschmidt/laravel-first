@@ -14,6 +14,15 @@
                 <form method="POST" action="{{ route('artist.store') }}" class="space-y-6">
                     @csrf
 
+                    <div class="form-group">
+                        <label for="poster">Photo de l'acteur</label>
+                        <input type="file" name="acteur-photo" id="acteur-photo"
+                            class="form-control @error('acteur-photo') is-invalid @enderror">
+                        @error('acteur-photo')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">
                             Last Name *
@@ -33,6 +42,17 @@
                             <input type="text" name="firstname" id="firstname" required
                                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 placeholder="Enter first name">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="birthdate" class="block text-sm font-medium text-gray-700">
+                            Birth Year
+                        </label>
+                        <div class="mt-1">
+                            <input type="number" min="1902" max="2023" step="1" name="birthdate"
+                                id="birthdate" placeholder="Enter birth year" required
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
                     </div>
 

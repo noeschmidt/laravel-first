@@ -7,10 +7,26 @@
             </div>
 
             <div class="bg-white shadow-md rounded-lg p-8">
-                <form method="POST" action="{{ route('movie.update', $movie->id) }}" class="space-y-6">
+                <form method="POST" action="{{ route('movie.update', $movie->id) }}" class="space-y-6"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
+                    <div class="form-group">
+                        <label for="poster" class="block text-sm font-medium text-gray-700 mb-1">Poster du
+                            film</label>
+                        @if ($movie->poster_path)
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/' . $movie->poster_path) }}" alt="{{ $movie->title }}"
+                                    class="h-40">
+                            </div>
+                        @endif
+                        <input type="file" name="poster" id="poster"
+                            class="form-control @error('poster') is-invalid @enderror">
+                        @error('poster')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
                     <div>
                         <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Title</label>
                         <x-input type="text" name="title" id="title" placeholder="Enter title"

@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use function PHPSTORM_META\map;
+
 class ArtistRequest extends FormRequest
 {
     /**
@@ -24,8 +26,9 @@ class ArtistRequest extends FormRequest
         return [
             'name' => 'required|string|max:20',
             'firstname' => 'required|string|max:15',
-            'birthdate' => 'required|integer|min:1800|max:2023',
-            'country_id' => 'required|exists:countries,id'
+            'birthdate' => 'required|integer|min:1902|max:2023',
+            'country_id' => 'required|exists:countries,id',
+            'actor' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
 }

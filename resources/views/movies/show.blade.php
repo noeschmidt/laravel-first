@@ -17,6 +17,10 @@
                             class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Edit Movie
                         </a>
+                        <a href="{{ route('movie.destroy', $movie->id) }}"
+                            class="text-red-600 hover:text-red-900 px-3 py-1 border border-red-600 rounded hover:bg-red-50 delete">
+                            Delete
+                        </a>
                     </div>
                 </div>
             </div>
@@ -86,7 +90,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        document.querySelectorAll('.delete').forEach(item => {
+        document.querySelectorAll('.detach').forEach(item => {
             item.addEventListener('click', event => {
                 event.preventDefault();
 
@@ -100,6 +104,26 @@
                     }).then(response => {
                         if (response.ok) {
                             window.location.reload();
+                        }
+                    });
+                }
+            });
+        });
+        document.querySelectorAll('.delete').forEach(item => {
+            item.addEventListener('click', event => {
+                event.preventDefault();
+
+                if (confirm('Are you sure you want to delete this movie?')) {
+                    fetch(event.target.href, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRF-TOKEN': token
+                        },
+                        method: 'DELETE',
+                    }).then(response => {
+                        if (response.ok) {
+                            // A revoir
+                            window.location.pathname = '/';
                         }
                     });
                 }

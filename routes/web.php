@@ -26,6 +26,10 @@ Route::prefix('movie')->group(function () {
     Route::delete('{movie}/detach/{artist}', [MovieController::class, 'detach'])->name('movie.detach');
 });
 
+// Route::prefix('artist')->group(function () {
+//     Route::get('{artist}/artist', [ArtistController::class, 'artist']->name('artist.artist'));
+// });
+
 Route::resource('artist', ArtistController::class);
 
 Route::resource('movie', MovieController::class);

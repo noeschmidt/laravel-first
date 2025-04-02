@@ -18,6 +18,10 @@
                             <tr>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Poster
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Title
                                 </th>
                                 <th scope="col"
@@ -41,6 +45,16 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($movies as $movie)
                                 <tr>
+                                    <td class="px-2 py-4 whitespace-nowrap">
+                                        @if ($movie->poster_path)
+                                            <img src="{{ asset('storage/' . $movie->poster_path) }}"
+                                                alt="{{ $movie->title }}" class="rounded w-24 h-32 object-cover shadow">
+                                        @else
+                                            <div class="bg-gray-200 w-24 h-32 flex items-center justify-center rounded">
+                                                <span class="text-gray-500">No poster</span>
+                                            </div>
+                                        @endif
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <a href="{{ route('movie.show', $movie->id) }}"
                                             class="text-indigo-600 hover:text-indigo-900">{{ $movie->title }}
