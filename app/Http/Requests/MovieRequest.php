@@ -25,7 +25,8 @@ class MovieRequest extends FormRequest
             'title' => 'required|string|max:100',
             'year' => 'required|integer|min:1800|max:2030',
             'director_id' => 'required|exists:artists,id',
-            'country_id' => 'required|exists:countries,id'
+            'country_id' => 'required|exists:countries,id',
+            'poster' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
 
         ];
     }

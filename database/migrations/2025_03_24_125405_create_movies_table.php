@@ -17,6 +17,7 @@ return new class extends Migration
             $table->year('year')->nullable();
             $table->foreignId('country_id')->nullable()->constrained('countries');
             $table->timestamps();
+            $table->string('poster_path')->nullable();
         });
     }
 

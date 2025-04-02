@@ -12,8 +12,17 @@
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                <form method="POST" action="{{ route('movie.store') }}" class="space-y-6">
+                <form method="POST" action="{{ route('movie.store') }}" class="space-y-6" enctype="multipart/form-data">
                     {{ csrf_field() }}
+
+                    <div class="form-group">
+                        <label for="poster">Poster du film</label>
+                        <input type="file" name="poster" id="poster"
+                            class="form-control @error('poster') is-invalid @enderror">
+                        @error('poster')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
 
                     <div>
                         <label for="title" class="block text-sm font-medium text-gray-700">Title</label>

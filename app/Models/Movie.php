@@ -12,7 +12,8 @@ class Movie extends Model
         'title',
         'year',
         'country_id',
-        'director_id'
+        'director_id',
+        'poster_path'
     ];
 
     public function country()
@@ -27,6 +28,6 @@ class Movie extends Model
 
     public function actors()
     {
-        return $this->belongsToMany(Artist::class);
+        return $this->belongsToMany(Artist::class)->withPivot('role_name');
     }
 }
