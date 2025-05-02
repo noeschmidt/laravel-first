@@ -28,7 +28,7 @@ class ArtistRequest extends FormRequest
             'firstname' => 'required|string|max:15',
             'birthdate' => 'required|integer|min:1902|max:2023',
             'country_id' => 'required|exists:countries,id',
-            'actor' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+            'acteur-photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
 }

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artists', function (Blueprint $table) {
+        Schema::create('cinema', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20);
-            $table->string('firstname', 15);
-            $table->year('birthdate')->nullable();
-            $table->string('actor_path')->nullable();
-            // $table->foreignId('country_id')->constrained(); 
+            $table->string('name', 100);
+            $table->string('address');
+            $table->string('poster_path')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('artists');
+        Schema::dropIfExists('cinema');
     }
 };

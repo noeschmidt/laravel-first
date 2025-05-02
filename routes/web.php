@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\CinemaController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\MovieController;
 
@@ -33,5 +34,7 @@ Route::prefix('movie')->group(function () {
 Route::resource('artist', ArtistController::class);
 
 Route::resource('movie', MovieController::class);
+
+Route::resource('cinema', CinemaController::class);
 
 Route::resource('country', CountryController::class);

@@ -40,7 +40,7 @@ class ArtistController extends Controller
 
         if ($request->hasFile('acteur-photo')) {
             $photoActeur = $request->file('acteur-photo');
-            $filename = 'acteur_' . $artist->firstname . '-' . $artist->name . $photoActeur . guessClientExtension();
+            $filename = 'acteur_' . $artist->id . '.' . $photoActeur->guessClientExtension();
             Image::read($photoActeur)->cover(180, 240)
                 ->save(storage_path('/app/public/actors/' . $filename));
 
@@ -84,6 +84,21 @@ class ArtistController extends Controller
     public function update(ArtistRequest $request, Artist $artist)
     {
         $artist->update($request->validated());
+
+        if ($request->hasFile('acteur-photo')) {
+            // Delete old photo if exists
+            if ($artist->actor_path) {
+                Storage::disk('public')->delete($artist->actor_path);
+            }
+
+            $photoActeur = $request->file('acteur-photo');
+            $filename = 'acteur_' . $artist->id . '.' . $photoActeur->guessClientExtension();
+            Image::read($photoActeur)->cover(180, 240)
+                ->save(storage_path('/app/public/actors/' . $filename));
+
+            $artist->actor_path = 'actors/' . $filename;
+            $artist->save();
+        }
 
         return redirect()->route('artist.index')
             ->with('ok', __('Artist has been updated'));

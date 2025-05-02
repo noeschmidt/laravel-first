@@ -11,11 +11,11 @@
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                <form method="POST" action="{{ route('artist.store') }}" class="space-y-6">
+                <form method="POST" action="{{ route('artist.store') }}" class="space-y-6" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">
-                        <label for="poster">Photo de l'acteur</label>
+                        <label for="acteur-photo">Photo de l'acteur</label>
                         <input type="file" name="acteur-photo" id="acteur-photo"
                             class="form-control @error('acteur-photo') is-invalid @enderror">
                         @error('acteur-photo')

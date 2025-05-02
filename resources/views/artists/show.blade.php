@@ -4,6 +4,13 @@
             <div class="px-6 py-5 border-b border-gray-200">
                 <div class="flex justify-between items-center">
                     <div>
+                        @if ($artist->actor_path)
+                            <img src="{{ asset('storage/' . $artist->actor_path) }}" alt="{{ $artist->name }} {{ $artist->firstname }}" class="rounded w-32 h-40 object-cover shadow mb-4">
+                        @else
+                            <div class="bg-gray-200 w-32 h-40 flex items-center justify-center rounded mb-4">
+                                <span class="text-gray-500">No photo</span>
+                            </div>
+                        @endif
                         <h1 class="text-3xl font-bold text-gray-900">{{ $artist->name }} {{ $artist->firstname }}</h1>
                         <p class="mt-1 text-lg text-gray-600">Born in {{ $artist->birthdate }}</p>
                         <p class="text-gray-700">

@@ -8,9 +8,24 @@
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                <form method="POST" action="{{ route('artist.update', $artist->id) }}" class="space-y-6">
+                <form method="POST" action="{{ route('artist.update', $artist->id) }}" class="space-y-6" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+
+                    <div class="form-group">
+                        <label for="acteur-photo" class="block text-sm font-medium text-gray-700 mb-1">Photo de l'acteur</label>
+                        @if ($artist->actor_path)
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/' . $artist->actor_path) }}" alt="{{ $artist->name }} {{ $artist->firstname }}"
+                                    class="h-40">
+                            </div>
+                        @endif
+                        <input type="file" name="acteur-photo" id="acteur-photo"
+                            class="form-control @error('acteur-photo') is-invalid @enderror">
+                        @error('acteur-photo')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
 
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">

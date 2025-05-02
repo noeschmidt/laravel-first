@@ -22,7 +22,8 @@ class ArtistFactory extends Factory
             'name' => $this->faker->lastName,
             'firstname' => $this->faker->firstname,
             'birthdate' => $this->faker->numberBetween(1901, 2010),
-            'country_id' => Country::all()->random()->id
+            'country_id' => Country::all()->random()->id,
+            'actor_path' => null,
         ];
     }
 }
