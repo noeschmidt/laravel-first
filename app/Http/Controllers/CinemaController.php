@@ -73,7 +73,7 @@ class CinemaController extends Controller
         $cinema->update($request->validated());
 
         if ($request->hasFile('poster')) {
-            // Delete old poster if exists
+            // Supprimer ancien poster s'il existe
             if ($cinema->poster_path) {
                 Storage::disk('public')->delete($cinema->poster_path);
             }

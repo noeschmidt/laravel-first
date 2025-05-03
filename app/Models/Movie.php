@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Movie extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasFactory;
     protected $fillable = [
         'title',
         'year',
@@ -29,5 +30,10 @@ class Movie extends Model
     public function actors()
     {
         return $this->belongsToMany(Artist::class)->withPivot('role_name');
+    }
+
+    public function showtimes()
+    {
+        return $this->hasMany(Showtime::class);
     }
 }

@@ -71,6 +71,11 @@
                         
                         Cinemas
                     </a>
+                    <a href="{{ route('showtimes.index') }}"
+                        class="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200 flex items-center">
+                        
+                        All Showtimes
+                    </a>
                 </div>
 
                 @if (Route::has('login'))

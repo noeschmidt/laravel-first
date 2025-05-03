@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cinema extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasFactory;
     
     protected $table = 'cinema';
     protected $fillable = [
@@ -21,4 +22,8 @@ class Cinema extends Model
         return $this->hasMany(Movie::class);
     }
 
+    public function rooms()
+    {
+        return $this->hasMany(Room::class);
+    }
 }

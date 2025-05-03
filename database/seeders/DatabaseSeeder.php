@@ -21,9 +21,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            CountriesTableSeeder::class,
-            ArtistsTableSeeder::class,
-            MoviesTableSeeder::class
+            // ArtistSeeder::class,
+            // CountrySeeder::class,
+            MovieSeeder::class,
+            CinemaSeeder::class,
+            ShowtimeSeeder::class,
         ]);
     }
 }

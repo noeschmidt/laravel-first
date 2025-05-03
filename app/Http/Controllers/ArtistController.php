@@ -57,10 +57,8 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        // Load movies that this artist has directed
         $directedMovies = $artist->hasDirected;
 
-        // Load movies where this artist has played in
         $actedInMovies = $artist->hasPlayed;
 
         return view('artists.show', [
@@ -86,7 +84,6 @@ class ArtistController extends Controller
         $artist->update($request->validated());
 
         if ($request->hasFile('acteur-photo')) {
-            // Delete old photo if exists
             if ($artist->actor_path) {
                 Storage::disk('public')->delete($artist->actor_path);
             }
@@ -119,6 +116,7 @@ class ArtistController extends Controller
 
     public function __construct()
     {
+        // marche pas
         // $this->middleware('ajax')->only('destroy');
     }
 }

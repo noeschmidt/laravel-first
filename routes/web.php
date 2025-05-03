@@ -5,6 +5,9 @@ use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\CinemaController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\Cinema\RoomController;
+use App\Http\Controllers\Room\ShowtimeController as RoomShowtimeController;
+use App\Http\Controllers\ShowtimeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,5 +39,11 @@ Route::resource('artist', ArtistController::class);
 Route::resource('movie', MovieController::class);
 
 Route::resource('cinema', CinemaController::class);
+
+Route::resource('cinema.room', RoomController::class)->shallow();
+
+Route::resource('room.showtime', RoomShowtimeController::class)->shallow();
+
+Route::get('/showtimes', [ShowtimeController::class, 'index'])->name('showtimes.index');
 
 Route::resource('country', CountryController::class);
