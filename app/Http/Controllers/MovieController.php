@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\MovieRequest;
 use Intervention\Image\Laravel\Facades\Image;
@@ -26,9 +27,11 @@ class MovieController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Movie $movie)
+    public function create()
     {
-        return view('movies.create', ['movie' => $movie, 'directors' => Artist::all(), 'countries' => Country::all()]);
+        $this->authorize('create', Movie::class);
+        $artists = Artist::all();
+        return view('movies.create', compact('artists'));
     }
 
     /**
@@ -36,7 +39,9 @@ class MovieController extends Controller
      */
     public function store(MovieRequest $request, Movie $movie)
     {
+        $this->authorize('create', Movie::class);
         $validated = $request->validated();
+        $validated['user_id'] = Auth::id();
 
         $movie = Movie::create($validated);
 
@@ -79,7 +84,9 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        return view('movies.edit', ['movie' => $movie, 'directors' => Artist::all(), 'countries' => Country::all()]);
+        $this->authorize('update', $movie);
+        $artists = Artist::all();
+        return view('movies.edit', compact('movie', 'artists'));
     }
 
     /**
@@ -87,6 +94,7 @@ class MovieController extends Controller
      */
     public function update(MovieRequest $request, Movie $movie)
     {
+        $this->authorize('update', $movie);
         $movie->update($request->validated());
 
         if ($request->hasFile('poster')) {
@@ -113,7 +121,12 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
+        $this->authorize('delete', $movie);
         $movie->delete();
+
+        if ($movie->poster_path) {
+            Storage::delete('public/posters/' . basename($movie->poster_path));
+        }
 
         return redirect()->route('movie.index')
             ->with('ok', __('Movie has been deleted'));

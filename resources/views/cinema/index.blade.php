@@ -3,12 +3,14 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-bold text-gray-900">Cinemas List</h1>
+                @can('create', Cinema::class)
                 <div class="mt-4">
                     <a href="{{ route('cinema.create') }}"
                         class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         + Add New Cinema
                     </a>
                 </div>
+                @endcan
             </div>
 
             <div class="bg-white shadow overflow-hidden sm:rounded-lg">
@@ -28,10 +30,12 @@
                                     class="px-6 py-3 text-left text-xs font-medium text-amber-800 uppercase tracking-wider">
                                     Address
                                 </th>
+                                @can('delete', Cinema::class)
                                 <th scope="col"
                                     class="px-6 py-3 text-right text-xs font-medium text-amber-800 uppercase tracking-wider">
                                     Actions
                                 </th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -55,6 +59,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-500">{{ $cinema->address }}</div>
                                     </td>
+                                    @can('delete', Cinema::class)
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <div class="flex justify-end space-x-2">
                                             <a href="{{ route('cinema.edit', $cinema->id) }}"
@@ -67,6 +72,7 @@
                                             </a>
                                         </div>
                                     </td>
+                                    @endcan
                                 </tr>
                             @endforeach
                         </tbody>

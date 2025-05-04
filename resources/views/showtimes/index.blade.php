@@ -1,10 +1,8 @@
 <x-guest-layout>
     <div class="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto"> {{-- Wider container --}}
+        <div class="max-w-7xl mx-auto"> 
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-bold text-gray-900">All Scheduled Showtimes</h1>
-                 {{-- Optional: Add a button to go back or to another relevant page --}}
-                 {{-- <a href="{{ route('dashboard') }}" class="mt-4 inline-flex items-center px-4 py-2 bg-gray-200 border border-transparent rounded-md font-semibold text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Back to Dashboard</a> --}}
             </div>
 
             <div class="bg-white shadow overflow-hidden sm:rounded-lg">
@@ -32,10 +30,12 @@
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     End Time
                                 </th>
-                                 <th scope="col"
+                                @can('update', Showtime::class)
+                                <th scope="col"
                                     class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
                                 </th>
+                                @endcan
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -56,12 +56,12 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-500">{{ $showtime->end_time }}</div>
                                     </td>
+                                    @can('update', $showtime)
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        {{-- Link to edit this specific showtime --}}
                                          <a href="{{ route('showtime.edit', $showtime->id) }}"
                                             class="text-amber-600 hover:text-amber-900">Edit</a>
-                                        {{-- Maybe add other links if needed --}}
                                     </td>
+                                    @endcan
                                 </tr>
                             @empty
                                 <tr>
@@ -76,7 +76,7 @@
             </div>
 
              <div class="mt-4">
-                 {{ $showtimes->links() }} {{-- Display pagination links --}}
+                 {{ $showtimes->links() }}
             </div>
         </div>
     </div>

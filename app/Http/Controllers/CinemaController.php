@@ -7,6 +7,7 @@ use App\Http\Requests\CinemaRequest;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Cinema;
+use Illuminate\Support\Facades\Auth;
 
 class CinemaController extends Controller
 {
@@ -21,17 +22,20 @@ class CinemaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Cinema $cinema)
+    public function create()
     {
-        return view('cinema.create', ['cinema' => $cinema]);
+        $this->authorize('create', Cinema::class);
+        return view('cinema.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CinemaRequest $request, Cinema $cinema)
+    public function store(CinemaRequest $request)
     {
+        $this->authorize('create', Cinema::class);
         $validated = $request->validated();
+        $validated['user_id'] = Auth::id();
 
         $cinema = Cinema::create($validated);
 
@@ -62,6 +66,7 @@ class CinemaController extends Controller
      */
     public function edit(Cinema $cinema)
     {
+        $this->authorize('update', $cinema);
         return view('cinema.edit', ['cinema' => $cinema]);
     }
 
@@ -70,6 +75,7 @@ class CinemaController extends Controller
      */
     public function update(CinemaRequest $request, Cinema $cinema)
     {
+        $this->authorize('update', $cinema);
         $cinema->update($request->validated());
 
         if ($request->hasFile('poster')) {
@@ -96,6 +102,7 @@ class CinemaController extends Controller
      */
     public function destroy(Cinema $cinema)
     {
+        $this->authorize('delete', $cinema);
         $cinema->delete();
 
         return redirect()->route('cinema.index')

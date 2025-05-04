@@ -7,6 +7,7 @@ use App\Models\Cinema;
 use App\Models\Room;
 use App\Http\Requests\StoreRoomRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoomController extends Controller
 {
@@ -25,6 +26,7 @@ class RoomController extends Controller
      */
     public function create(Cinema $cinema)
     {
+        $this->authorize('create', Room::class);
         return view('cinemas.rooms.create', compact('cinema'));
     }
 
@@ -33,7 +35,9 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request, Cinema $cinema)
     {
+        $this->authorize('create', Room::class);
         $validated = $request->validated();
+        $validated['user_id'] = Auth::id();
 
         $cinema->rooms()->create($validated);
 
@@ -54,6 +58,7 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
+        $this->authorize('update', $room);
         return view('cinemas.rooms.edit', compact('room'));
     }
 
@@ -61,7 +66,8 @@ class RoomController extends Controller
      * Update the specified room in storage.
      */
     public function update(StoreRoomRequest $request, Room $room)
-    { 
+    {
+        $this->authorize('update', $room);
         $validated = $request->validated();
         $room->update($validated);
 
@@ -74,6 +80,7 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
+        $this->authorize('delete', $room);
         $cinemaId = $room->cinema_id;
         $room->delete();
 

@@ -3,12 +3,14 @@
         <div class="max-w-3xl mx-auto">
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-bold text-gray-900">Countries List</h1>
+                @can('create', Country::class)
                 <div class="mt-4">
                     <a href="{{ route('country.create') }}"
                         class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         + Add New Country
                     </a>
                 </div>
+                @endcan
             </div>
 
             <div class="bg-white shadow overflow-hidden sm:rounded-lg">
@@ -19,10 +21,12 @@
                                 class="px-6 py-3 text-left text-xs font-medium text-amber-800 uppercase tracking-wider">
                                 Country Name
                             </th>
+                            @can('delete', Country::class)
                             <th scope="col"
                                 class="px-6 py-3 text-right text-xs font-medium text-amber-800 uppercase tracking-wider">
                                 Actions
                             </th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -31,6 +35,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-medium text-gray-900">{{ $country->name }}</div>
                                 </td>
+                                @can('delete', Country::class)
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div class="flex justify-end space-x-2">
                                         <a href="{{ route('country.edit', $country->id) }}"
@@ -43,6 +48,7 @@
                                         </a>
                                     </div>
                                 </td>
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>

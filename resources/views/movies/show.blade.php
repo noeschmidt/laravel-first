@@ -18,9 +18,10 @@
                                 {{ $movie->director->name }}</span>
                         </p>
                     </div>
-                    <div>
+                    @can('update', $movie)
+                    <div class="flex items-center gap-2">
                         <a href="{{ route('movie.edit', $movie->id) }}"
-                            class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            class="inline-flex items-center px-4 py-2 text-nowrap border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Edit Movie
                         </a>
                         <a href="{{ route('movie.destroy', $movie->id) }}"
@@ -28,6 +29,7 @@
                             Delete
                         </a>
                     </div>
+                    @endcan
                 </div>
             </div>
 
@@ -45,14 +47,16 @@
                                     Role: {{ $artist->pivot->role_name }}
                                 </p>
                             </div>
+                            @can('delete', $movie)
                             <a class="text-red-600 hover:text-red-800 delete text-sm font-medium"
                                 href="{{ route('movie.detach', ['movie' => $movie->id, 'artist' => $artist->id]) }}">
                                 Remove
                             </a>
+                            @endcan
                         </div>
                     @endforeach
                 </div>
-
+                @can('update', $movie)
                 <div class="bg-gray-50 p-6 rounded-lg">
                     <h3 class="text-lg font-medium text-gray-900 mb-4">Add Actor to Cast</h3>
                     <form method="POST" action="{{ route('movie.attach', $movie->id) }}">
@@ -87,6 +91,7 @@
                         </div>
                     </form>
                 </div>
+                @endcan
             </div>
         </div>
     </div>

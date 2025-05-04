@@ -8,6 +8,7 @@ use App\Models\Showtime;
 use App\Models\Movie;
 use App\Http\Requests\StoreShowtimeRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShowtimeController extends Controller
 {
@@ -26,8 +27,8 @@ class ShowtimeController extends Controller
      */
     public function create(Room $room)
     {
-        $movies = Movie::orderBy('title')->get();
-
+        $this->authorize('create', Showtime::class);
+        $movies = Movie::all();
         return view('cinemas.rooms.showtimes.create', compact('room', 'movies'));
     }
 
@@ -36,7 +37,9 @@ class ShowtimeController extends Controller
      */
     public function store(StoreShowtimeRequest $request, Room $room)
     {
+        $this->authorize('create', Showtime::class);
         $validated = $request->validated();
+        $validated['user_id'] = Auth::id();
 
         $room->showtimes()->create($validated);
 
@@ -57,8 +60,9 @@ class ShowtimeController extends Controller
      */
     public function edit(Showtime $showtime)
     {
+        $this->authorize('update', $showtime);
         $showtime->load('room.cinema');
-        $movies = Movie::orderBy('title')->get();
+        $movies = Movie::all();
 
         return view('cinemas.rooms.showtimes.edit', compact('showtime', 'movies'));
     }
@@ -68,6 +72,7 @@ class ShowtimeController extends Controller
      */
     public function update(StoreShowtimeRequest $request, Showtime $showtime)
     {
+        $this->authorize('update', $showtime);
         $validated = $request->validated();
         $showtime->update($validated);
 
@@ -80,6 +85,7 @@ class ShowtimeController extends Controller
      */
     public function destroy(Showtime $showtime)
     {
+        $this->authorize('delete', $showtime);
         $roomId = $showtime->room_id;
         $showtime->delete();
 

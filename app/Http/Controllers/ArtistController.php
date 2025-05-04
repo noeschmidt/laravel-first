@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Middleware\Ajax;
 use App\Models\Artist;
 use App\Models\Country;
+use Illuminate\Support\Facades\Auth;
 
 class ArtistController extends Controller
 {
@@ -24,9 +25,11 @@ class ArtistController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Artist $artist)
+    public function create()
     {
-        return view('artists.create', ['artist' => $artist, 'countries' => Country::all()]);
+        $this->authorize('create', Artist::class);
+        $countries = Country::all();
+        return view('artists.create', compact('countries'));
     }
 
     /**
@@ -34,7 +37,9 @@ class ArtistController extends Controller
      */
     public function store(ArtistRequest $request, Artist $artist)
     {
+        $this->authorize('create', Artist::class);
         $validated = $request->validated();
+        $validated['user_id'] = Auth::id();
 
         $artist = Artist::create($validated);
 
@@ -73,7 +78,9 @@ class ArtistController extends Controller
      */
     public function edit(Artist $artist)
     {
-        return view('artists.edit', ['artist' => $artist, 'countries' => Country::all()]);
+        $this->authorize('update', $artist);
+        $countries = Country::all();
+        return view('artists.edit', compact('artist', 'countries'));
     }
 
     /**
@@ -81,6 +88,7 @@ class ArtistController extends Controller
      */
     public function update(ArtistRequest $request, Artist $artist)
     {
+        $this->authorize('update', $artist);
         $artist->update($request->validated());
 
         if ($request->hasFile('acteur-photo')) {
@@ -106,6 +114,7 @@ class ArtistController extends Controller
      */
     public function destroy(Artist $artist)
     {
+        $this->authorize('delete', $artist);
         $artist->hasPlayed()->detach();
         // $artist->hasDirected()->dissociate();
         $artist->save();
