@@ -4,11 +4,12 @@
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-bold text-gray-900">Rooms for {{ $cinema->name }}</h1>
                 <div class="mt-4">
-                    {{-- Link to create a new room for this cinema --}}
+                    @can('create', \App\Models\Room::class)
                     <a href="{{ route('cinema.room.create', $cinema->id) }}"
                         class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         + Add New Room
                     </a>
+                    @endcan
                     <a href="{{ route('cinema.show', $cinema->id) }}"
                         class="ml-4 inline-flex items-center px-4 py-2 bg-gray-200 border border-transparent rounded-md font-semibold text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Back to Cinema Details
@@ -53,11 +54,14 @@
                                                 Showtimes
                                             </a>
                                             {{-- Edit link uses the shallow route 'room.edit' --}}
+                                            @can('update', $room)
                                             <a href="{{ route('room.edit', $room->id) }}"
                                                 class="text-amber-600 hover:text-amber-900 px-3 py-1 border border-amber-600 rounded hover:bg-amber-50">
                                                 Edit
                                             </a>
+                                            @endcan
                                             {{-- Delete form uses the shallow route 'room.destroy' --}}
+                                            @can('delete', $room)
                                             <form action="{{ route('room.destroy', $room->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this room?');">
                                                 @csrf
                                                 @method('DELETE')
@@ -66,6 +70,7 @@
                                                     Delete
                                                 </button>
                                             </form>
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>

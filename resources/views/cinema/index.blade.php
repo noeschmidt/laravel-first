@@ -3,14 +3,14 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-bold text-gray-900">Cinemas List</h1>
-                @can('create', Cinema::class)
+                @auth
                 <div class="mt-4">
                     <a href="{{ route('cinema.create') }}"
                         class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         + Add New Cinema
                     </a>
                 </div>
-                @endcan
+                @endauth
             </div>
 
             <div class="bg-white shadow overflow-hidden sm:rounded-lg">
@@ -30,12 +30,12 @@
                                     class="px-6 py-3 text-left text-xs font-medium text-amber-800 uppercase tracking-wider">
                                     Address
                                 </th>
-                                @can('delete', Cinema::class)
+                                @auth
                                 <th scope="col"
                                     class="px-6 py-3 text-right text-xs font-medium text-amber-800 uppercase tracking-wider">
                                     Actions
                                 </th>
-                                @endcan
+                                @endauth
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -59,20 +59,24 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-500">{{ $cinema->address }}</div>
                                     </td>
-                                    @can('delete', Cinema::class)
+                                    @auth
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <div class="flex justify-end space-x-2">
-                                            <a href="{{ route('cinema.edit', $cinema->id) }}"
-                                                class="text-amber-600 hover:text-amber-900 px-3 py-1 border border-amber-600 rounded hover:bg-amber-50">
-                                                Edit
-                                            </a>
-                                            <a href="{{ route('cinema.destroy', $cinema->id) }}"
-                                                class="text-red-600 hover:text-red-900 px-3 py-1 border border-red-600 rounded hover:bg-red-50 delete">
-                                                Delete
-                                            </a>
+                                            @can('update', $cinema)
+                                                <a href="{{ route('cinema.edit', $cinema->id) }}"
+                                                    class="text-amber-600 hover:text-amber-900 px-3 py-1 border border-amber-600 rounded hover:bg-amber-50">
+                                                    Edit
+                                                </a>
+                                            @endcan
+                                            @can('delete', $cinema)
+                                                <a href="{{ route('cinema.destroy', $cinema->id) }}"
+                                                    class="text-red-600 hover:text-red-900 px-3 py-1 border border-red-600 rounded hover:bg-red-50 delete">
+                                                    Delete
+                                                </a>
+                                            @endcan
                                         </div>
                                     </td>
-                                    @endcan
+                                    @endauth
                                 </tr>
                             @endforeach
                         </tbody>

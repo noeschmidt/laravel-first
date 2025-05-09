@@ -10,7 +10,8 @@ class Country extends Model
 {
     use SoftDeletes, HasFactory;
     protected $fillable = [
-        'name'
+        'name',
+        'user_id'
     ];
 
     public function artists()

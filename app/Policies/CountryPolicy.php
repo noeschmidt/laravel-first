@@ -2,26 +2,26 @@
 
 namespace App\Policies;
 
-use App\Models\Cinema;
+use App\Models\Country;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class CinemaPolicy
+class CountryPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Cinema $cinema): bool
+    public function view(User $user, Country $country): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -35,23 +35,23 @@ class CinemaPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Cinema $cinema): bool
+    public function update(User $user, Country $country): bool
     {
-        return $user->id === $cinema->user_id;
+        return $user->id === $country->user_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Cinema $cinema): bool
+    public function delete(User $user, Country $country): bool
     {
-        return $user->id === $cinema->user_id;
+        return $user->id === $country->user_id;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Cinema $cinema): bool
+    public function restore(User $user, Country $country): bool
     {
         return false;
     }
@@ -59,7 +59,7 @@ class CinemaPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Cinema $cinema): bool
+    public function forceDelete(User $user, Country $country): bool
     {
         return false;
     }

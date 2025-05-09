@@ -23,6 +23,7 @@ class CountryController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Country::class);
         return view('countries.create');
     }
 
@@ -31,6 +32,7 @@ class CountryController extends Controller
      */
     public function store(CountryRequest $request)
     {
+        $this->authorize('create', Country::class);
         Country::create($request->validated());
 
         return redirect()->route('country.index')
@@ -50,6 +52,7 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
+        $this->authorize('update', $country);
         return view('countries.edit', ['country' => $country]);
     }
 
@@ -58,6 +61,7 @@ class CountryController extends Controller
      */
     public function update(CountryRequest $request, Country $country)
     {
+        $this->authorize('update', $country);
         $country->update($request->validated());
 
         return redirect()->route('country.index')
@@ -69,6 +73,7 @@ class CountryController extends Controller
      */
     public function destroy(Country $country)
     {
+        $this->authorize('delete', $country);
         // soit supprimer d'abord l'artiste et après le country
         // ou alors automatiquement faire que ça delete
         $country->artists()->delete();

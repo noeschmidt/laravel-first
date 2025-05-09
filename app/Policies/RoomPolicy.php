@@ -29,7 +29,7 @@ class RoomPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user !== null;
     }
 
     /**
@@ -37,7 +37,7 @@ class RoomPolicy
      */
     public function update(User $user, Room $room): bool
     {
-        return false;
+        return $user->id === $room->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class RoomPolicy
      */
     public function delete(User $user, Room $room): bool
     {
-        return false;
+        return $user->id === $room->user_id;
     }
 
     /**

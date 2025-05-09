@@ -13,7 +13,7 @@ class ArtistPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class ArtistPolicy
      */
     public function view(User $user, Artist $artist): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class ArtistPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user !== null;
     }
 
     /**
@@ -37,7 +37,7 @@ class ArtistPolicy
      */
     public function update(User $user, Artist $artist): bool
     {
-        return false;
+        return $user->id === $artist->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class ArtistPolicy
      */
     public function delete(User $user, Artist $artist): bool
     {
-        return false;
+        return $user->id === $artist->user_id;
     }
 
     /**

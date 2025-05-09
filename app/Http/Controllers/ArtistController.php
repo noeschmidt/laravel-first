@@ -35,10 +35,10 @@ class ArtistController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ArtistRequest $request, Artist $artist)
+    public function store(Request $request)
     {
         $this->authorize('create', Artist::class);
-        $validated = $request->validated();
+        $validated = app(ArtistRequest::class)->validated();
         $validated['user_id'] = Auth::id();
 
         $artist = Artist::create($validated);
@@ -86,10 +86,11 @@ class ArtistController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ArtistRequest $request, Artist $artist)
+    public function update(Request $request, Artist $artist)
     {
         $this->authorize('update', $artist);
-        $artist->update($request->validated());
+        $validated = app(ArtistRequest::class)->validated();
+        $artist->update($validated);
 
         if ($request->hasFile('acteur-photo')) {
             if ($artist->actor_path) {

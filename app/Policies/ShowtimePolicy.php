@@ -29,7 +29,7 @@ class ShowtimePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user !== null;
     }
 
     /**
@@ -37,7 +37,7 @@ class ShowtimePolicy
      */
     public function update(User $user, Showtime $showtime): bool
     {
-        return false;
+        return $user->id === $showtime->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class ShowtimePolicy
      */
     public function delete(User $user, Showtime $showtime): bool
     {
-        return false;
+        return $user->id === $showtime->user_id;
     }
 
     /**
