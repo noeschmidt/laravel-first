@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="acteur-photo">Photo de l'acteur</label>
                         <input type="file" name="acteur-photo" id="acteur-photo"
-                            class="form-control @error('acteur-photo') is-invalid @enderror">
+                            class="form-control @error('acteur-photo') is-invalid @enderror" accept="image/*">
                         @error('acteur-photo')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror

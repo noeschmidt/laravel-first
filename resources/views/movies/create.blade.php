@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label for="poster">Poster du film</label>
                         <input type="file" name="poster" id="poster"
-                            class="form-control @error('poster') is-invalid @enderror">
+                            class="form-control @error('poster') is-invalid @enderror" accept="image/*">
                         @error('poster')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -46,8 +46,7 @@
                             <select name="director_id" id="director_id" required
                                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 @foreach ($directors as $director)
-                                    <option value="{{ $director->id }}"
-                                        {{ $director->id == $movie->director_id ? 'selected="selected"' : '' }}>
+                                    <option value="{{ $director->id }}">
                                         {{ $director->name }}
                                     </option>
                                 @endforeach
@@ -61,8 +60,7 @@
                             <select name="country_id" id="country_id" required
                                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}"
-                                        {{ $country->id == $movie->country_id ? 'selected="selected"' : '' }}>
+                                    <option value="{{ $country->id }}">
                                         {{ $country->name }}
                                     </option>
                                 @endforeach

@@ -15,7 +15,8 @@ class Movie extends Model
         'year',
         'country_id',
         'director_id',
-        'poster_path'
+        'poster_path',
+        'user_id'
     ];
 
     public function country()

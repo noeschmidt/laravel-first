@@ -19,7 +19,7 @@ class ArtistController extends Controller
     public function index()
     {
         // dd(Artist::all());
-        return view('artists.index', ['artists' => Artist::paginate(1)]);
+        return view('artists.index', ['artists' => Artist::paginate(3)]);
     }
 
     /**

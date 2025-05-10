@@ -21,7 +21,7 @@ class MovieController extends Controller
     public function index()
     {
         return view('movies.index', ['movies' =>
-        Movie::paginate(1)]);
+        Movie::paginate(3)]);
     }
 
     /**
@@ -30,8 +30,9 @@ class MovieController extends Controller
     public function create()
     {
         $this->authorize('create', Movie::class);
-        $artists = Artist::all();
-        return view('movies.create', compact('artists'));
+        $directors = Artist::all();
+        $countries = Country::all();
+        return view('movies.create', compact('directors', 'countries'));
     }
 
     /**
@@ -85,8 +86,9 @@ class MovieController extends Controller
     public function edit(Movie $movie)
     {
         $this->authorize('update', $movie);
-        $artists = Artist::all();
-        return view('movies.edit', compact('movie', 'artists'));
+        $directors = Artist::all();
+        $countries = Country::all();
+        return view('movies.edit', compact('movie', 'directors', 'countries'));
     }
 
     /**
