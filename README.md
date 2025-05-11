@@ -10,7 +10,7 @@ Pour mettre en place et lancer l'application, veuillez suivre attentivement les 
     Récupérez les fichiers du projet depuis le dépôt GitHub avec la commande suivante :
 
     ```bash
-    git clone [https://github.com/noeschmidt/laravel-first.git](https://github.com/noeschmidt/laravel-first.git)
+    git clone https://github.com/noeschmidt/laravel-first.git
     ```
 
 2.  **Création de la Base de Données**
@@ -75,7 +75,7 @@ Pour mettre en place et lancer l'application, veuillez suivre attentivement les 
         ```
 
     ```
-    Par défaut, le site sera accessible à l'adresse : [http://localhost:8000](http://localhost:8000).
+    Par défaut, le site sera accessible à l'adresse : http://localhost:8000
     ```
 
 ---
