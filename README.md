@@ -43,4 +43,37 @@ Même principe que pour artistes, on a un tableau de film avec différentes info
 
 Puis, on peut aller sur "Countries" dans la navbar.
 
-Ici, j'ai simplement listés les pays qui sont générés par Faker, parfois,
+Ici, j'ai simplement listés les pays que j'ai prédéfinis dans un seeder.
+
+Ensuite, il y a "Cinemas" on peut cliquer dessus, on voit les des cinemas avec leur address, on peut cliquer sur un cinema.
+
+Dans la vue show du cinema, on a un bouton "view rooms" qui nous permet de voir les salles avec la capacity et on a un bouton d'action,
+qui permet de voir les showtimes associé à chaque room.
+
+Puis, on a "Rooms" qui affiche toutes les rooms.
+
+Enfin, on a showtimes qui affichent dans l'ordre les showtimes qui vont bientôt commencer.
+
+--
+On va passer à la version connectée pour tester les autres features.
+
+On va cliquer sur "Register" dans la navbar.
+
+On remplit le formulaire de register.
+Par exemple voici un compte random:
+Name -> Admin
+email -> Admin@mail.com
+Password -> Admin2025
+Confirm Password -> Admin2025
+
+Une fois qu'on c'est bien register, on est redirigé sur la dashboard.
+
+Il y a pas grand chose ici, donc on peut simplement cliquer sur le bouton "view showtimes", qui nous redirige vers le tableau des showtimes.
+
+On repart dans la navbar, et on clique sur "Artists".
+
+On voit un nouveau bouton "Add new artist", on peut cliquer dessus.
+
+Ici, on voit un formulaire pour créer un artiste. On y va, on remplit les fields.
+
+Sachant que l'image ne doit pas dépasser 2048kb.
