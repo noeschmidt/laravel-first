@@ -22,8 +22,8 @@ class ArtistRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:3|max:40',
-            'firstname' => 'required|string|min:3|max:40',
+            'name' => 'required|string|min:3|max:20',
+            'firstname' => 'required|string|min:3|max:15',
             'birthdate' => 'required|integer|min:1902|max:2023',
             'country_id' => 'required|exists:countries,id',
             'acteur-photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
