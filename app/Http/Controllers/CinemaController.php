@@ -16,7 +16,7 @@ class CinemaController extends Controller
      */
     public function index()
     {
-        return view('cinemas.index', ['cinemas' => Cinema::paginate(10)]);
+        return view('cinemas.index', ['cinemas' => Cinema::orderBy('updated_at', 'desc')->paginate(8)]);
     }
 
     /**
@@ -103,8 +103,16 @@ class CinemaController extends Controller
     public function destroy(Cinema $cinema)
     {
         $this->authorize('delete', $cinema);
+        
+        // Delete the cinema
         $cinema->delete();
 
+        // Check if the request is AJAX
+        if (request()->ajax()) {
+            return response()->json(['message' => __('Cinema has been deleted')]);
+        }
+
+        // For non-AJAX requests, redirect
         return redirect()->route('cinema.index')
             ->with('ok', __('Cinema has been deleted'));
     }

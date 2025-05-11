@@ -31,7 +31,10 @@
     @endif
     <header class="bg-indigo-600 shadow-md">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+            <div class="flex justify-between h-16 place-items-center">
+                <a href="/" class="text-white text-2xl font-bold">
+                    NetFlux
+                </a>
                 <div class="flex space-x-8">
                     <a href="{{ route('artist.index') }}"
                         class="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium transition duration-200 flex items-center gap-2">

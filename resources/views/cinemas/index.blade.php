@@ -56,7 +56,7 @@
                                             @endcan
                                             <a href="{{ route('cinema.room.index', $cinema->id) }}"
                                                 class="text-blue-600 hover:text-blue-900 px-3 py-1 border border-blue-600 rounded hover:bg-blue-50">
-                                                 Manage Rooms
+                                                 View Rooms
                                             </a>
                                             @can('delete', $cinema)
                                                 <a href="{{ route('cinema.destroy', $cinema->id) }}"
@@ -98,13 +98,22 @@
                         method: 'DELETE',
                     }).then(response => {
                         if (response.ok) {
-                            window.location.reload();
+                            return response.json();
                         } else {
-                            alert('Error deleting cinema');
+                            return response.json().then(data => {
+                                throw new Error(data.message || 'Error deleting cinema');
+                            }).catch(() => {
+                                throw new Error('Error deleting cinema (Status: ' + response.status + ')');
+                            });
                         }
-                    }).catch(error => {
+                    })
+                    .then(data => {
+                        console.log(data.message);
+                        window.location.reload();
+                    })
+                    .catch(error => {
                         console.error('Error:', error);
-                        alert('Error deleting cinema');
+                        alert(error.message || 'Error deleting cinema');
                     });
                 }
             });

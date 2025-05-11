@@ -13,7 +13,7 @@ class ShowtimePolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class ShowtimePolicy
      */
     public function view(User $user, Showtime $showtime): bool
     {
-        return false;
+        return true;
     }
 
     /**

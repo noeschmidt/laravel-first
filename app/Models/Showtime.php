@@ -18,6 +18,7 @@ class Showtime extends Model
         'movie_id',
         'start_time',
         'end_time',
+        'user_id'
     ];
 
     protected $dates = [

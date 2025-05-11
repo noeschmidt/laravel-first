@@ -4,9 +4,9 @@
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-bold text-gray-900">Rooms for {{ $cinema->name }}</h1>
                 <div class="mt-4">
-                    @can('create', \App\Models\Room::class)
+                    @can('update', $cinema)
                     <a href="{{ route('cinema.room.create', $cinema->id) }}"
-                        class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus::ring-offset-2 focus:ring-indigo-500">
                         + Add New Room
                     </a>
                     @endcan

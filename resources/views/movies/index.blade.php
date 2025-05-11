@@ -77,13 +77,13 @@
                 @auth
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div class="flex justify-end space-x-2">
-                        @can('update', Movie::class)
+                        @can('update', $movie)
                         <a href="{{ route('movie.edit', $movie->id) }}"
                             class="text-indigo-600 hover:text-indigo-900 px-3 py-1 border border-indigo-600 rounded hover:bg-indigo-50">
                             Edit
                         </a>
                         @endcan
-                        @can('delete', Movie::class)
+                        @can('delete', $movie)
                         <a href="{{ route('movie.destroy', $movie->id) }}"
                             class="text-red-600 hover:text-red-900 px-3 py-1 border border-red-600 rounded hover:bg-red-50 delete">
                             Delete

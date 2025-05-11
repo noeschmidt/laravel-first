@@ -2,6 +2,7 @@
     <div class="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto"> 
             <div class="text-center mb-8">
+                <!-- Ici c'est ma page pour afficher TOUS les showtimes -->
                 <h1 class="text-3xl font-bold text-gray-900">All Scheduled Showtimes</h1>
             </div>
 
@@ -30,12 +31,12 @@
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     End Time
                                 </th>
-                                @can('update', Showtime::class)
+                                @auth
                                 <th scope="col"
                                     class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
                                 </th>
-                                @endcan
+                                @endauth
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">

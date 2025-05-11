@@ -29,6 +29,7 @@ class RoomController extends Controller
     public function globalIndex()
     {
         $rooms = Room::with('cinema')
+                     ->orderBy('updated_at', 'desc')
                      ->orderBy('name')
                      ->paginate(15); // Add pagination
 
@@ -40,7 +41,7 @@ class RoomController extends Controller
      */
     public function create(Cinema $cinema)
     {
-        $this->authorize('create', Room::class);
+        $this->authorize('update', $cinema);
         return view('cinemas.rooms.create', compact('cinema'));
     }
 
@@ -49,7 +50,7 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request, Cinema $cinema)
     {
-        $this->authorize('create', Room::class);
+        $this->authorize('update', $cinema);
         $validated = $request->validated();
         $validated['user_id'] = Auth::id();
 

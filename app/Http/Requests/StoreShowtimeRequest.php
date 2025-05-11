@@ -23,7 +23,7 @@ class StoreShowtimeRequest extends FormRequest
     {
         return [
             'movie_id' => 'required|exists:movies,id',
-            'start_time' => 'required|date',
+            'start_time' => 'required|date|after:now',
             'end_time' => 'required|date|after:start_time',
         ];
     }

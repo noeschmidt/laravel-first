@@ -47,8 +47,22 @@
                         method: 'DELETE',
                     }).then(response => {
                         if (response.ok) {
-                            window.location.pathname = '/cinemas';
+                            return response.json();
+                        } else {
+                            return response.json().then(data => {
+                                throw new Error(data.message || 'Error deleting cinema');
+                            }).catch(() => {
+                                throw new Error('Error deleting cinema (Status: ' + response.status + ')');
+                            });
                         }
+                    })
+                    .then(data => {
+                        console.log(data.message);
+                        window.location.pathname = '/cinema';
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert(error.message || 'Error deleting cinema');
                     });
                 }
             });

@@ -8,9 +8,20 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\Cinema\RoomController;
 use App\Http\Controllers\Room\ShowtimeController as RoomShowtimeController;
 use App\Http\Controllers\ShowtimeController;
+use App\Models\Movie;
+use App\Models\Artist;
+use App\Models\Showtime;
 
 Route::get('/', function () {
-    return view('welcome');
+    $latestMovies = Movie::latest()->take(10)->get();
+    $latestArtists = Artist::latest()->take(10)->get();
+    $upcomingShowtimes = Showtime::with(['movie', 'room.cinema'])
+                                ->where('start_time', '>', now())
+                                ->orderBy('start_time', 'asc')
+                                ->take(10)
+                                ->get();
+
+    return view('welcome', compact('latestMovies', 'latestArtists', 'upcomingShowtimes'));
 });
 
 Route::middleware([

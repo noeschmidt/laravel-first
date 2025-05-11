@@ -11,7 +11,6 @@ class StoreRoomRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // For now, allow anyone to create a room. Adjust authorization logic if needed.
         return true;
     }
 
@@ -23,8 +22,8 @@ class StoreRoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:100',
-            'capacity' => 'required|integer|min:1',
+            'name' => 'required|string|min:3|max:100',
+            'capacity' => 'required|integer|min:1|max:1000',
         ];
     }
 }

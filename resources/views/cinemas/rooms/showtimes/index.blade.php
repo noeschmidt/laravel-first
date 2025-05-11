@@ -5,10 +5,12 @@
                 <h1 class="text-3xl font-bold text-gray-900">Showtimes for {{ $room->name }}</h1>
                 <p class="mt-1 text-lg text-gray-600">Cinema: {{ $room->cinema->name }}</p>
                 <div class="mt-4">
+                    @can('update', $room)
                     <a href="{{ route('room.showtime.create', $room->id) }}"
                         class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         + Add New Showtime
                     </a>
+                    @endcan
                     <a href="{{ route('cinema.room.index', $room->cinema_id) }}"
                         class="ml-4 inline-flex items-center px-4 py-2 bg-gray-200 border border-transparent rounded-md font-semibold text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Back to Room List
@@ -58,11 +60,13 @@
                                     @auth
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <div class="flex justify-end space-x-2">
-                                          
+                                            @can('update', $showtime)
                                             <a href="{{ route('showtime.edit', $showtime->id) }}"
                                                 class="text-amber-600 hover:text-amber-900 px-3 py-1 border border-amber-600 rounded hover:bg-amber-50">
                                                 Edit
                                             </a>
+                                            @endcan
+                                            @can('delete', $showtime)
                                             <form action="{{ route('showtime.destroy', $showtime->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this showtime?');">
                                                 @csrf
                                                 @method('DELETE')
@@ -71,6 +75,7 @@
                                                     Delete
                                                 </button>
                                             </form>
+                                            @endcan
                                         </div>
                                     </td>
                                     @endauth

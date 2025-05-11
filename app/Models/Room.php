@@ -17,6 +17,7 @@ class Room extends Model
         'name',
         'capacity',
         'cinema_id',
+        'user_id'
     ];
 
     public function cinema()

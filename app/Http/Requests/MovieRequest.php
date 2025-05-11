@@ -25,7 +25,7 @@ class MovieRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:100',
+            'title' => 'required|string|min:3|max:100',
             'year' => 'required|integer|min:1800|max:2030',
             'director_id' => 'required|exists:artists,id',
             'country_id' => 'required|exists:countries,id',
