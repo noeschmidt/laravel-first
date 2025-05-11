@@ -8,7 +8,6 @@
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                {{-- The form posts to the nested route 'cinema.room.store' --}}
                 <form method="POST" action="{{ route('cinema.room.store', $cinema->id) }}" class="space-y-6">
                     @csrf
 
@@ -41,7 +40,6 @@
                     </div>
 
                     <div class="flex items-center justify-between">
-                        {{-- Link back to the rooms index for this cinema --}}
                         <a href="{{ route('cinema.room.index', $cinema->id) }}" class="text-sm text-indigo-600 hover:text-indigo-500">
                             Cancel
                         </a>

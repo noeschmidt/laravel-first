@@ -9,13 +9,10 @@
             </p>
         </div>
 
-        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-lg"> {{-- Increased max-w for more space --}}
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-lg">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                {{-- The form posts to the nested route 'room.showtime.store' --}}
                 <form method="POST" action="{{ route('room.showtime.store', $room->id) }}" class="space-y-6">
                     @csrf
-
-                    {{-- Movie Selection --}}
                     <div>
                         <label for="movie_id" class="block text-sm font-medium text-gray-700">Movie *</label>
                         <select id="movie_id" name="movie_id" required
@@ -32,7 +29,6 @@
                         @enderror
                     </div>
 
-                    {{-- Start Time --}}
                     <div>
                         <label for="start_time" class="block text-sm font-medium text-gray-700">Start Time *</label>
                         <input type="datetime-local" id="start_time" name="start_time" required value="{{ old('start_time') }}"
@@ -42,7 +38,6 @@
                         @enderror
                     </div>
 
-                    {{-- End Time --}}
                      <div>
                         <label for="end_time" class="block text-sm font-medium text-gray-700">End Time *</label>
                         <input type="datetime-local" id="end_time" name="end_time" required value="{{ old('end_time') }}"
@@ -53,7 +48,6 @@
                     </div>
 
                     <div class="flex items-center justify-between">
-                        {{-- Link back to the showtime index for this room --}}
                         <a href="{{ route('room.showtime.index', $room->id) }}" class="text-sm text-indigo-600 hover:text-indigo-500">
                             Cancel
                         </a>

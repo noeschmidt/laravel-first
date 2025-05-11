@@ -37,7 +37,6 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            {{-- Loop through rooms will be added here by the controller --}}
                             @forelse ($rooms as $room)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -48,19 +47,16 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <div class="flex justify-end space-x-2">
-                                            {{-- Link to manage showtimes for this room --}}
                                             <a href="{{ route('room.showtime.index', $room->id) }}"
                                                 class="text-blue-600 hover:text-blue-900 px-3 py-1 border border-blue-600 rounded hover:bg-blue-50">
                                                 Showtimes
                                             </a>
-                                            {{-- Edit link uses the shallow route 'room.edit' --}}
                                             @can('update', $room)
                                             <a href="{{ route('room.edit', $room->id) }}"
                                                 class="text-amber-600 hover:text-amber-900 px-3 py-1 border border-amber-600 rounded hover:bg-amber-50">
                                                 Edit
                                             </a>
                                             @endcan
-                                            {{-- Delete form uses the shallow route 'room.destroy' --}}
                                             @can('delete', $room)
                                             <form action="{{ route('room.destroy', $room->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this room?');">
                                                 @csrf
@@ -87,7 +83,6 @@
             </div>
 
              <div class="mt-4">
-                {{-- Pagination links if needed --}}
                  {{-- $rooms->links() --}}
             </div>
         </div>

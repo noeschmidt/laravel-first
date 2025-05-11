@@ -11,7 +11,6 @@
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                {{-- Form posts to the shallow route 'room.update' --}}
                 <form method="POST" action="{{ route('room.update', $room->id) }}" class="space-y-6">
                     @csrf
                     @method('PUT')
@@ -42,11 +41,9 @@
                         </div>
                     </div>
 
-                    {{-- Hidden field for cinema_id might not be strictly necessary if not updating it, but good practice --}}
                     <input type="hidden" name="cinema_id" value="{{ $room->cinema_id }}">
 
                     <div class="flex items-center justify-between">
-                        {{-- Link back to the rooms index for the parent cinema --}}
                         <a href="{{ route('cinema.room.index', $room->cinema_id) }}" class="text-sm text-indigo-600 hover:text-indigo-500">
                             Cancel
                         </a>

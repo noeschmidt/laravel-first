@@ -18,7 +18,6 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-amber-50">
                             <tr>
-                            
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-amber-800 uppercase tracking-wider">
                                     Name
@@ -38,7 +37,6 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($cinemas as $cinema)
                                 <tr>
-                                    
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <a href="{{ route('cinema.show', $cinema->id) }}"
                                             class="text-sm font-medium text-gray-900">{{ $cinema->name }}

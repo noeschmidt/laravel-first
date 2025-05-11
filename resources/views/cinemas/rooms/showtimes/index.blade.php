@@ -63,7 +63,6 @@
                                                 class="text-amber-600 hover:text-amber-900 px-3 py-1 border border-amber-600 rounded hover:bg-amber-50">
                                                 Edit
                                             </a>
-                                            {{-- Delete form uses the shallow route 'showtime.destroy' --}}
                                             <form action="{{ route('showtime.destroy', $showtime->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this showtime?');">
                                                 @csrf
                                                 @method('DELETE')
@@ -89,7 +88,6 @@
             </div>
 
              <div class="mt-4">
-                {{-- Pagination links if needed --}}
                  {{-- $showtimes->links() --}}
             </div>
         </div>

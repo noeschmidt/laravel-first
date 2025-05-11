@@ -11,12 +11,10 @@
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-lg"> {{-- Increased max-w --}}
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                {{-- Form posts to the shallow route 'showtime.update' --}}
                 <form method="POST" action="{{ route('showtime.update', $showtime->id) }}" class="space-y-6">
                     @csrf
                     @method('PUT')
 
-                    {{-- Movie Selection --}}
                     <div>
                         <label for="movie_id" class="block text-sm font-medium text-gray-700">Movie *</label>
                         <select id="movie_id" name="movie_id" required
@@ -33,7 +31,6 @@
                         @enderror
                     </div>
 
-                    {{-- Start Time --}}
                     <div>
                         <label for="start_time" class="block text-sm font-medium text-gray-700">Start Time *</label>
                         {{-- Format datetime for the input value --}}
@@ -44,7 +41,6 @@
                         @enderror
                     </div>
 
-                    {{-- End Time --}}
                      <div>
                         <label for="end_time" class="block text-sm font-medium text-gray-700">End Time *</label>
                         <input type="datetime-local" id="end_time" name="end_time" required value="{{ old('end_time', $showtime->end_time->format('Y-m-d\TH:i')) }}"
@@ -54,11 +50,9 @@
                         @enderror
                     </div>
 
-                    {{-- Hidden field for room_id might be useful --}}
                     <input type="hidden" name="room_id" value="{{ $showtime->room_id }}">
 
                     <div class="flex items-center justify-between">
-                        {{-- Link back to the showtime index for the parent room --}}
                         <a href="{{ route('room.showtime.index', $showtime->room_id) }}" class="text-sm text-indigo-600 hover:text-indigo-500">
                             Cancel
                         </a>
