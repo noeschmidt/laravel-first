@@ -29,8 +29,8 @@ class MovieFactory extends Factory
         return [
             'title' => $this->faker->words(rand(2, 5), true),
             'year' => $this->faker->year(),
-            'country_id' => Country::factory(), 
-            'director_id' => Artist::factory(), 
+            'country_id' => Country::inRandomOrder()->first()->id, 
+            'director_id' => Artist::inRandomOrder()->first()->id, 
             'poster_path' => null, 
         ];
     }
