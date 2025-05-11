@@ -4,13 +4,7 @@
             <div class="px-6 py-5 border-b border-gray-200">
                 <div class="flex justify-between items-center">
                     <div>
-                        @if ($cinema->poster_path)
-                            <img src="{{ asset('storage/' . $cinema->poster_path) }}" alt="{{ $cinema->name }}" class="rounded w-32 h-40 object-cover shadow mb-4">
-                        @else
-                            <div class="bg-gray-200 w-32 h-40 flex items-center justify-center rounded mb-4">
-                                <span class="text-gray-500">No poster</span>
-                            </div>
-                        @endif
+                       
                         <h1 class="text-3xl font-bold text-gray-900">{{ $cinema->name }}</h1>
                         <p class="mt-1 text-lg text-gray-600">{{ $cinema->address }}</p>
                     </div>

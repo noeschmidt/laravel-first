@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @mixin \Illuminate\Http\Request
+ */
 class MovieRequest extends FormRequest
 {
     /**

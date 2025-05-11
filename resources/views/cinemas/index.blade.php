@@ -18,10 +18,7 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-amber-50">
                             <tr>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-amber-800 uppercase tracking-wider">
-                                    Poster
-                                </th>
+                            
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-amber-800 uppercase tracking-wider">
                                     Name
@@ -41,16 +38,7 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($cinemas as $cinema)
                                 <tr>
-                                    <td class="px-2 py-4 whitespace-nowrap">
-                                        @if ($cinema->poster_path)
-                                            <img src="{{ asset('storage/' . $cinema->poster_path) }}"
-                                                alt="{{ $cinema->name }}" class="rounded w-24 h-32 object-cover shadow">
-                                        @else
-                                            <div class="bg-gray-200 w-24 h-32 flex items-center justify-center rounded">
-                                                <span class="text-gray-500">No poster</span>
-                                            </div>
-                                        @endif
-                                    </td>
+                                    
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <a href="{{ route('cinema.show', $cinema->id) }}"
                                             class="text-sm font-medium text-gray-900">{{ $cinema->name }}
@@ -68,6 +56,10 @@
                                                     Edit
                                                 </a>
                                             @endcan
+                                            <a href="{{ route('cinema.room.index', $cinema->id) }}"
+                                                class="text-blue-600 hover:text-blue-900 px-3 py-1 border border-blue-600 rounded hover:bg-blue-50">
+                                                 Manage Rooms
+                                            </a>
                                             @can('delete', $cinema)
                                                 <a href="{{ route('cinema.destroy', $cinema->id) }}"
                                                     class="text-red-600 hover:text-red-900 px-3 py-1 border border-red-600 rounded hover:bg-red-50 delete">

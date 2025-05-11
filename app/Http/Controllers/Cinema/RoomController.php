@@ -22,6 +22,20 @@ class RoomController extends Controller
     }
 
     /**
+     * Display a listing of all rooms across all cinemas.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function globalIndex()
+    {
+        $rooms = Room::with('cinema')
+                     ->orderBy('name')
+                     ->paginate(15); // Add pagination
+
+        return view('rooms.index', compact('rooms'));
+    }
+
+    /**
      * Show the form for creating a new room for a specific cinema.
      */
     public function create(Cinema $cinema)

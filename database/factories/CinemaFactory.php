@@ -27,7 +27,6 @@ class CinemaFactory extends Factory
         return [
             'name' => $this->faker->company() . ' Cinemas',
             'address' => $this->faker->address(),
-            'poster_path' => null,
         ];
     }
 }

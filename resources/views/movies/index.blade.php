@@ -53,9 +53,7 @@
                                     @if ($movie->poster_path)
                                         <img src="{{ asset('storage/' . $movie->poster_path) }}" alt="{{ $movie->title }}" class="rounded w-24 h-32 object-cover shadow">
                                     @else
-                                        <div class="bg-gray-200 w-24 h-32 flex items-center justify-center rounded">
-                                            <span class="text-gray-500">No poster</span>
-                                        </div>
+                                        <img src="{{ asset('images/default-movie-image.png') }}" alt="No poster available" class="rounded w-24 h-32 object-cover shadow bg-gray-200">
                                     @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">

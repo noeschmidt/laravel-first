@@ -16,7 +16,7 @@ class CinemaController extends Controller
      */
     public function index()
     {
-        return view('cinema.index', ['cinemas' => Cinema::paginate(10)]);
+        return view('cinemas.index', ['cinemas' => Cinema::paginate(10)]);
     }
 
     /**
@@ -25,7 +25,7 @@ class CinemaController extends Controller
     public function create()
     {
         $this->authorize('create', Cinema::class);
-        return view('cinema.create');
+        return view('cinemas.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class CinemaController extends Controller
      */
     public function show(Cinema $cinema)
     {
-        return view('cinema.show', ['cinema' => $cinema]);
+        return view('cinemas.show', ['cinema' => $cinema]);
     }
 
     /**
@@ -67,7 +67,7 @@ class CinemaController extends Controller
     public function edit(Cinema $cinema)
     {
         $this->authorize('update', $cinema);
-        return view('cinema.edit', ['cinema' => $cinema]);
+        return view('cinemas.edit', ['cinema' => $cinema]);
     }
 
     /**

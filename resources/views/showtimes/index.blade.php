@@ -42,13 +42,25 @@
                             @forelse ($showtimes as $showtime)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">{{ $showtime->movie->title ?? 'N/A' }}</div>
+                                        <div class="text-sm font-medium text-gray-900">
+                                            <a href="{{ route('movie.show', $showtime->movie->id) }}" class="text-indigo-600 hover:text-indigo-900">
+                                                {{ $showtime->movie->title ?? 'N/A' }}
+                                            </a>
+                                        </div>
                                     </td>
                                      <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-500">{{ $showtime->room->cinema->name ?? 'N/A' }}</div>
+                                        <div class="text-sm text-gray-500">
+                                            <a href="{{ route('cinema.show', $showtime->room->cinema->id) }}" class="text-gray-600 hover:text-gray-800">
+                                                {{ $showtime->room->cinema->name ?? 'N/A' }}
+                                            </a>
+                                        </div>
                                     </td>
                                      <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-500">{{ $showtime->room->name ?? 'N/A' }}</div>
+                                        <div class="text-sm text-gray-500">
+                                            <a href="{{ route('room.show', $showtime->room->id) }}" class="text-gray-600 hover:text-gray-800">
+                                                {{ $showtime->room->name ?? 'N/A' }}
+                                            </a>
+                                        </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-500">{{ $showtime->start_time }}</div>
@@ -59,7 +71,14 @@
                                     @can('update', $showtime)
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                          <a href="{{ route('showtime.edit', $showtime->id) }}"
-                                            class="text-amber-600 hover:text-amber-900">Edit</a>
+                                            class="text-amber-600 hover:text-amber-900 px-3 py-1 border border-amber-600 rounded hover:bg-amber-50">Edit</a>
+                                        @can('delete', $showtime)
+                                            <form action="{{ route('showtime.destroy', $showtime->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this showtime?');" class="inline-block ml-2">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                                            </form>
+                                        @endcan
                                     </td>
                                     @endcan
                                 </tr>

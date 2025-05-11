@@ -42,6 +42,9 @@ Route::resource('cinema', CinemaController::class);
 
 Route::resource('cinema.room', RoomController::class)->shallow();
 
+// Global list of all rooms
+Route::get('/rooms', [RoomController::class, 'globalIndex'])->name('rooms.index');
+
 Route::resource('room.showtime', RoomShowtimeController::class)->shallow();
 
 Route::get('/showtimes', [ShowtimeController::class, 'index'])->name('showtimes.index');

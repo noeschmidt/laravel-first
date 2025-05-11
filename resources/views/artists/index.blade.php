@@ -54,9 +54,7 @@
                                             <img src="{{ asset('storage/' . $artist->actor_path) }}"
                                                 alt="{{ $artist->name }} {{ $artist->firstname }}" class="rounded w-24 h-32 object-cover shadow">
                                         @else
-                                            <div class="bg-gray-200 w-24 h-32 flex items-center justify-center rounded">
-                                                <span class="text-gray-500">No photo</span>
-                                            </div>
+                                            <img src="{{ asset('images/default-artist-image.png') }}" alt="No photo available" class="rounded w-24 h-32 object-cover shadow bg-gray-200">
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">

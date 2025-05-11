@@ -15,7 +15,7 @@ class Cinema extends Model
     protected $fillable = [
         'name',
         'address',
-        'poster_path'
+        'user_id'
     ];
 
     public function movies()
