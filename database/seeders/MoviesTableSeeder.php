@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 
 class MoviesTableSeeder extends Seeder
+// Là on ne l'utilise pas, c'était un ancien
 {
     /**
      * Run the database seeds.

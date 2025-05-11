@@ -14,22 +14,17 @@ class MovieSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create the initial 15 movies
-        Movie::factory()->count(15)->create();
-
-        // Get all movies and artists
-        $movies = Movie::all();
         $artists = Artist::all();
 
-        // Attach random artists as actors to each movie
-        foreach ($movies as $movie) {
-            // Get a random number of artists (between 1 and 5)
+        Movie::factory()->count(15)->create()->each(function ($movie) use ($artists) {
+            $movie->director_id = $artists->random()->id;
+            $movie->save();
+
             $randomArtists = $artists->random(rand(1, min(5, $artists->count())));
 
-            // Attach each random artist to the movie with a dummy role name
             foreach ($randomArtists as $artist) {
                 $movie->actors()->attach($artist->id, ['role_name' => 'Random Role']);
             }
-        }
+        });
     }
 }

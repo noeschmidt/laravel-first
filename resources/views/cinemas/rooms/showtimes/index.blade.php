@@ -47,7 +47,9 @@
                             @forelse ($showtimes as $showtime)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">{{ $showtime->movie->title ?? 'Movie not found' }}</div>
+                                        <a href="{{ route('movie.show', $showtime->movie->id) }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-900">
+                                            {{ $showtime->movie->title ?? 'Movie not found' }}
+                                        </a>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{-- Format the start time --}}

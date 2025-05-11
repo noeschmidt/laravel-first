@@ -16,6 +16,7 @@ class CinemaController extends Controller
      */
     public function index()
     {
+        // Là j'ai mis que c'est trié par ordre le plus récent de updated_at
         return view('cinemas.index', ['cinemas' => Cinema::orderBy('updated_at', 'desc')->paginate(8)]);
     }
 

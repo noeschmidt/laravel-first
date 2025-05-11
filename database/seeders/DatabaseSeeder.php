@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            // ArtistSeeder::class,
-            // CountrySeeder::class,
+            CountriesTableSeeder::class,
+            ArtistsTableSeeder::class,
             MovieSeeder::class,
             CinemaSeeder::class,
             ShowtimeSeeder::class,

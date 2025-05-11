@@ -26,6 +26,11 @@ class CountriesTableSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'name' => 'United States',
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'name' => 'Switzerland',
                 'created_at' => now(),
                 'updated_at' => now()

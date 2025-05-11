@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ShowtimeController extends Controller
+// <!-- Petite info : Ce controller sert à gérer les actions liées aux showtime et spécifiquement dans le contexte d'une room -->
 {
     /**
      * Display a listing of the showtimes for a specific room.

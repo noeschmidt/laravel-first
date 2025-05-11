@@ -6,6 +6,7 @@ use App\Models\Showtime;
 use Illuminate\Http\Request;
 
 class ShowtimeController extends Controller
+// <!-- Petite info : Ce controller sert à gérer les actions liées aux showtimes en général -->
 {
     /**
      * Display a listing of all showtimes across all cinemas/rooms.

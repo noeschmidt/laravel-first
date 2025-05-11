@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RoomController extends Controller
+// <!-- Petite info : Ce controller sert à gérer les actions liées aux rooms et spécifiquement dans le contexte d'un cinéma -->
 {
     /**
      * Display a listing of the rooms for a specific cinema.
@@ -31,7 +32,7 @@ class RoomController extends Controller
         $rooms = Room::with('cinema')
                      ->orderBy('updated_at', 'desc')
                      ->orderBy('name')
-                     ->paginate(15); // Add pagination
+                     ->paginate(15);
 
         return view('rooms.index', compact('rooms'));
     }

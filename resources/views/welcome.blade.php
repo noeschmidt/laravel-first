@@ -3,7 +3,7 @@
     <x-slot name="slot">
         <main class="bg-indigo-900">
         <div class="flex-1 px-6 pt-12 text-white">
-            <h1 class="mb-4 text-3xl font-bold text-center">Welcome to NetFlux !</h1>
+            <h1 class="mb-4 text-3xl font-bold text-center">Welcome to LaraFilms !</h1>
             <p class="mb-8 text-lg text-center text-neutral-100">Discover movies, find cinemas, and check showtimes near you.</p>
         </div>
 
@@ -42,8 +42,8 @@
                                 @if($artist->actor_path)
                                     <img src="{{ asset('storage/' . $artist->actor_path) }}" alt="{{ $artist->firstname }} {{ $artist->name }}" class="w-full h-64 object-cover rounded-md mb-2">
                                 @else
-                                    <div class="w-full h-64 bg-gray-300 rounded-md mb-2 flex items-center justify-center">
-                                        <span class="text-gray-500">No Photo</span>
+                                <div class="w-full h-64 bg-gray-300 rounded-md mb-2 flex items-center justify-center">
+                                    <img src="{{ asset('images/default-artist-image.png') }}" alt="No poster available" class="rounded size-full object-cover shadow">
                                     </div>
                                 @endif
                                 <h3 class="text-lg font-semibold text-white">{{ $artist->firstname }} {{ $artist->name }}</h3>
@@ -64,7 +64,7 @@
                         <div class="p-4 bg-indigo-600 border border-indigo-500 rounded-lg">
                             <h3 class="text-lg font-semibold text-white">{{ $showtime->movie->title }}</h3>
                             <p class="text-sm text-neutral-200">
-                                {{ $showtime->room->cinema->name }} - Room {{ $showtime->room->room_number }}
+                                {{ $showtime->room->cinema->name }} - {{ $showtime->room->name }}
                             </p>
                             <p class="text-sm text-neutral-200">
                                 Starts: {{ $showtime->start_time }}
