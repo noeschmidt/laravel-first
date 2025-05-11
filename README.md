@@ -15,6 +15,7 @@ Processus d'installation:
 -   composer install
 -   php artisan migrate:fresh
 -   php artisan db:seed
+-   php artisan storage:link
 -   composer run dev
 
 5. On va sur http://localhost:8000 -> et on arrive sur mon site
