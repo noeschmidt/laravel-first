@@ -33,7 +33,11 @@ class CountryController extends Controller
     public function store(CountryRequest $request)
     {
         $this->authorize('create', Country::class);
-        Country::create($request->validated());
+        
+        $validatedData = $request->validated();
+        $validatedData['user_id'] = auth()->id();
+
+        Country::create($validatedData);
 
         return redirect()->route('country.index')
             ->with('ok', __('Country has been saved'));

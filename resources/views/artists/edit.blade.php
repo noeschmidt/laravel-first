@@ -17,7 +17,7 @@
                         @if ($artist->actor_path)
                             <div class="mb-2">
                                 <img src="{{ asset('storage/' . $artist->actor_path) }}" alt="{{ $artist->name }} {{ $artist->firstname }}"
-                                    class="h-40">
+                                    class="h-40"  accept="image/*">
                             </div>
                         @endif
                         <input type="file" name="acteur-photo" id="acteur-photo"

@@ -22,7 +22,7 @@
                             </div>
                         @endif
                         <input type="file" name="poster" id="poster"
-                            class="form-control @error('poster') is-invalid @enderror">
+                            class="form-control @error('poster') is-invalid @enderror" accept="image/*">
                         @error('poster')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
